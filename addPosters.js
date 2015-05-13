@@ -1,5 +1,5 @@
 var fs = require('fs');
-var platformWhitelist = ['chanel'];
+var platformWhitelist = ['TODO'];
 var jf = require('jsonfile');
 var _ = require('lodash');
 
@@ -32,7 +32,7 @@ function addPosters(platform) {
 	};
 
 	thematiquesList.forEach(function(thematiqueDirName) {
-				//console.log(thematiquesDir + '/' + thematiqueDirName+'/test/');
+
 		var slides = fs.readdirSync(thematiquesDir + '/' + thematiqueDirName)
 					   .filter(function(slideName){
 						   return (slideName.indexOf('.json') > 0);

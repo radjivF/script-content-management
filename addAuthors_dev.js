@@ -1,5 +1,5 @@
 var fs = require('fs');
-var platformWhitelist = ['wetransform'];
+var platformWhitelist = ['TODO'];
 var jf = require('jsonfile');
 var regexp = require('node-regexp');
 var S = require('string');

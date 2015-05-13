@@ -53,15 +53,11 @@ function addPdfs(platform, disciplineRef) {
 function updateSlide(slidePath){
 	var slide = JSON.parse(fs.readFileSync(slidePath));
 
-	// fs.readFile(slidePath, function (err, data) {
-	//   if (err) throw err;
-	//   console.log(JSON.parse(data));
-	// });
+
 
 	if(slide.lessons){
-		var description = slide.lessons[0].poster; //"discipline_1.module_base.chapter_1.lesson.video_1.description"
-											   // the description is the videos poster not the description of the videos
-		console.log(description )
+		var description = slide.lessons[0].poster;
+		// the description is the videos poster not the description of the videos
  
 		description = description.replace('video_1', 'pdf')
 		description = description.replace('mini', 'description')
@@ -101,7 +97,5 @@ function updateSlide(slidePath){
 		process.stdout.write('.');
 		console.log(lessons);
 		jf.writeFileSync(slidePath, slide);
-	}
-
-	
+	}	
 };
