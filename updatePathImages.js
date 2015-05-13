@@ -1,11 +1,11 @@
 /* this script update the image links: 
-	//static.coorpacademy.com/content/ijoinchanel_en/2C2_Q1/2C2-Q1-mods.jpg
+	//static.coorpacademy.com/content/TODO/2C2_Q1/2C2-Q1-mods.jpg
 	to 
-	//static.coorpacademy.com/content/ijoinchanel/en/slides/1B1_Q8/2C2-Q1-mods.jpg
+	//static.coorpacademy.com/content/TODO/en/slides/1B1_Q8/2C2-Q1-mods.jpg
 	and
-	//static.coorpacademy.com/content/ijoinchanel/miniatures_cours/base/1B1.png
+	//static.coorpacademy.com/content/TODO/miniatures_cours/base/1B1.png
 	to 
-	//static.coorpacademy.com/content/ijoinchanel/en/miniatures/en-miniatures-1B1.png
+	//static.coorpacademy.com/content/TODO/en/miniatures/en-miniatures-1B1.png
 */
 
 var S = require('string');
@@ -13,15 +13,15 @@ var fs = require('fs');
 var jf = require('jsonfile');
 var yaml = require('yamljs');
 
-var oldEnglishSlide= '/ijoinchanel_en/';
-var newEnglishSlide= '/ijoinchanel/en/slides/';
-var oldEnglishMiniature= '/ijoinchanel_en/';
-var newEnglishMiniature= '/ijoinchanel/en/slides/'; 
+var oldEnglishSlide= '/TODO/';
+var newEnglishSlide= '/TODO/en/slides/';
+var oldEnglishMiniature= '/TODO/';
+var newEnglishMiniature= '/TODO/en/slides/'; 
 
-var oldFrenchSlide= '/ijoinchanel/';
-var newFrenchSlide= '/ijoinchanel/fr/slides/';
-var oldFrenchMiniature= '/ijoinchanel/miniatures_cours/';
-var newFrenchMiniature= '/ijoinchanel/fr/miniatures/';
+var oldFrenchSlide= '/TODO/';
+var newFrenchSlide= '/TODO/fr/slides/';
+var oldFrenchMiniature= '/TODO/miniatures_cours/';
+var newFrenchMiniature= '/TODO/fr/miniatures/';
 
 updateImagesLink(process.argv[2]);
 
