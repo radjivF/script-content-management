@@ -1,5 +1,5 @@
 var fs = require('fs');
-var platformWhitelist = ['chanel'];
+var platformWhitelist = ['TODO'];
 var jf = require('jsonfile');
 var _ = require('lodash');
 
@@ -15,7 +15,7 @@ function vimeoToJwp(platform) {
 	var thematiquesDir = platform + '/thematiques';
 
 	if (!fs.existsSync(thematiquesDir)) {
-    	console.log("Please enter a valid platform directory. For example: digital");
+    	console.log("Please enter a valid platform directory. For example: TODO");
     	return;
 	}
 

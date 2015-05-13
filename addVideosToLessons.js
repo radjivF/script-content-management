@@ -1,5 +1,5 @@
 var fs = require('fs');
-var platformWhitelist = ['chanel'];
+var platformWhitelist = ['TODO'];
 var jf = require('jsonfile');
 var _ = require('lodash');
 

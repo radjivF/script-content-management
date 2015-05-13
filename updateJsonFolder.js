@@ -1,10 +1,9 @@
-//Dependancies: npm install -g jsonfile fs
 
 var fs = require('fs');
 var jsonFile = require('jsonfile');
 
 var dirFolder= 'jsonUsers/';
-var name = "WeTransform";
+var name = "TODO";
 var user = "user";
 
 

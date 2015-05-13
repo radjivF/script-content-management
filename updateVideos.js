@@ -1,5 +1,5 @@
 var fs = require('fs');
-var platformWhitelist = ['sfr', 'schneider'];
+var platformWhitelist = ['TODO'];
 var jf = require('jsonfile');
 
 updateVideos(process.argv[2]);
@@ -65,14 +65,7 @@ function updateContentVideo(platform, slide) {
 
 		// the following lines are commented because I'm not sure we need to modify this.
 
-		// if (platform == 'sfr') { 
-		// 	lesson.mimeType = "video/x-flv";
-		// 	if (lesson.videoId) {
-		// 		lesson['mediaUrl'] = lesson.videoId.replace('videoId', 'mediaUrl');
-		// 		delete lesson.videoId;
-		// 	};
-		// };
-		if (platform == 'schneider') {
+		if (platform == 'TODO') {
 			source.mimeType = "application/kontiki";
 		};
 		newSources.push(source);
@@ -86,14 +79,14 @@ function updateContentVideo(platform, slide) {
 function updateLessonAttribute(platform, slide) {
 	var newLessons = [];
 	slide.lessons.forEach(function(lesson) {
-		if (platform == 'sfr') {
+		if (platform == 'TODO') {
 			lesson.mimeType = "video/x-flv";
 			if (lesson.videoId) {
 				lesson['mediaUrl'] = lesson.videoId.replace('videoId', 'mediaUrl');
 				delete lesson.videoId;
 			};
 		};
-		if (platform == 'schneider') {
+		if (platform == 'TODO') {
 			lesson.mimeType = "application/kontiki";
 		};
 		newLessons.push(lesson);

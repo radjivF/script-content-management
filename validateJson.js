@@ -15,7 +15,7 @@ function validateJSON(dir) {
 	var thematiquesDir = dir + '/thematiques';
 
 	if (!fs.existsSync(thematiquesDir)) {
-    	console.log("Please enter a valid platform directory. For example: digital");
+    	console.log("Please enter a valid platform directory. For example: TODO");
     	return;
 	}
 

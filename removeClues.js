@@ -1,5 +1,5 @@
 var fs = require('fs');
-var platformWhitelist = ['wetransform'];
+var platformWhitelist = ['TODO'];
 var jf = require('jsonfile');
 
 removeClues(process.argv[2], process.argv[3]);
