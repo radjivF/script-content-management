@@ -10,7 +10,7 @@ function addPosters(platform) {
 	if (platformWhitelist.indexOf(platform) < 0) {
 		console.log("The platform must be one of " + platformWhitelist.join(","));
 		return;
-	};
+	}
 
 	var thematiquesDir = platform + '/thematiques';
 
@@ -21,15 +21,13 @@ function addPosters(platform) {
 
 	var thematiquesList = fs.readdirSync(thematiquesDir)
 							.filter(function(dirName) {
-								return (dirName.indexOf('.json') < 0) 
-										&& (dirName.match(/^\./) == null)
-										&& fs.lstatSync(thematiquesDir + '/' + dirName).isDirectory();
+								return (dirName.indexOf('.json') < 0) && (dirName.match(/^\./) == null) && fs.lstatSync(thematiquesDir + '/' + dirName).isDirectory();
 							});
 
 	if (thematiquesList.length == 0) {
     	console.log("Please enter a valid discipline ref. For example: 01");
     	return;
-	};
+	}
 
 	thematiquesList.forEach(function(thematiqueDirName) {
 
@@ -64,5 +62,4 @@ function updateSlide(slidePath){
 		process.stdout.write('.');
 		jf.writeFileSync(slidePath, slide);
 	});
-
-};
+}

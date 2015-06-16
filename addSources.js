@@ -7,12 +7,13 @@ var _ = require('lodash');
 addPosters(process.argv[2]);
 
 function addPosters(platform) {
+	var thematiquesDir = platform + '/thematiques';
+	
 	if (platformWhitelist.indexOf(platform) < 0) {
 		console.log("The platform must be one of " + platformWhitelist.join(","));
 		return;
-	};
+	}
 
-	var thematiquesDir = platform + '/thematiques';
 
 	if (!fs.existsSync(thematiquesDir)) {
     	console.log("Please enter a valid platform directory. For example: digital");
@@ -21,18 +22,15 @@ function addPosters(platform) {
 
 	var thematiquesList = fs.readdirSync(thematiquesDir)
 							.filter(function(dirName) {
-								return (dirName.indexOf('.json') < 0) 
-										&& (dirName.match(/^\./) == null)
-										&& fs.lstatSync(thematiquesDir + '/' + dirName).isDirectory();
+								return (dirName.indexOf('.json') < 0) && (dirName.match(/^\./) == null) && fs.lstatSync(thematiquesDir + '/' + dirName).isDirectory();
 							});
 
 	if (thematiquesList.length == 0) {
     	console.log("Please enter a valid discipline ref. For example: 01");
     	return;
-	};
+	}
 
 	thematiquesList.forEach(function(thematiqueDirName) {
-				//console.log(thematiquesDir + '/' + thematiqueDirName+'/test/');
 		var slides = fs.readdirSync(thematiquesDir + '/' + thematiqueDirName)
 					   .filter(function(slideName){
 						   return (slideName.indexOf('.json') > 0);
@@ -45,7 +43,7 @@ function addPosters(platform) {
 	});
 
 	console.log('\n DONE UPDATING LESSONS');
-};
+}
 
 
 function updateSlide(slidePath){
@@ -63,11 +61,10 @@ function updateSlide(slidePath){
 			var srcFlv = {};
 			srcFlv["mimeType"] = "video/x-flv";
 			srcFlv["mediaUrl"] = lesson.mediaUrl.replace('.mediaUrlMp4', '.mediaUrlFlv');
-
 			lesson['src'] = [srcWebM, srcFlv];
 		}
 		process.stdout.write('.');
 		jf.writeFileSync(slidePath, slide);
 	});
 
-};
+}

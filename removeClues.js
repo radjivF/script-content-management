@@ -8,7 +8,7 @@ function removeClues(platform, disciplineRef) {
 	if (platformWhitelist.indexOf(platform) < 0) {
 		console.log("The platform must be one of " + platformWhitelist.join(","));
 		return;
-	};
+	}
 
 	var thematiquesDir = platform + '/thematiques';
 
@@ -19,10 +19,7 @@ function removeClues(platform, disciplineRef) {
 
 	var thematiquesList = fs.readdirSync(thematiquesDir)
 							.filter(function(dirName) {
-								return (dirName.indexOf('.json') < 0) 
-										&& (dirName.match(/^\./) == null) 
-										&& (dirName.indexOf(disciplineRef) >= 0) 
-										&& fs.lstatSync(thematiquesDir + '/' + dirName).isDirectory();
+								return (dirName.indexOf('.json') < 0) && (dirName.match(/^\./) == null) && (dirName.indexOf(disciplineRef) >= 0) && fs.lstatSync(thematiquesDir + '/' + dirName).isDirectory();
 							});
 
 	if (thematiquesList.length == 0) {
@@ -43,7 +40,7 @@ function removeClues(platform, disciplineRef) {
 	});
 
 	console.log('\n DONE UPDATING LESSONS');
-};
+}
 
 
 function updateSlide(slidePath){
@@ -52,4 +49,4 @@ function updateSlide(slidePath){
 
 	process.stdout.write('.');
 	jf.writeFileSync(slidePath, slide);
-};
+}

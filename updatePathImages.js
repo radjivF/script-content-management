@@ -8,10 +8,8 @@
 	//static.coorpacademy.com/content/TODO/en/miniatures/en-miniatures-1B1.png
 */
 
-var S = require('string');
 var fs = require('fs');
-var jf = require('jsonfile');
-var yaml = require('yamljs');
+var YAML = require('yamljs');
 
 var oldEnglishSlide= '/TODO/';
 var newEnglishSlide= '/TODO/en/slides/';
@@ -34,22 +32,22 @@ function updateImagesLink(platform) {
 
 	YAML.load('en.yaml', function(result)
 	{
-		nativeObject = result;
-	    updatedJson = updateEn(nativeObject);
+		var nativeObject = result;
+	    var updatedJson = updateEn(nativeObject);
 	   	save('en.yaml', YAML.stringify(updatedJson));
-	   	console.log('en.yaml updated')
+	   	console.log('en.yaml updated');
 	});
 	YAML.load('fr.yaml', function(result)
 	{
-	    nativeObject = result;
-	    updatedJson = updateEn(nativeObject);
-	    save('fr.yaml', YAML.stringify(updatedJson));
-	   	console.log('fr.yaml updated')
+	    var nativeObject = result;
+	    var updatedJson = updateEn(nativeObject);
+	    var save('fr.yaml', YAML.stringify(updatedJson));
+	   	console.log('fr.yaml updated');
 	});
-};
+}
 
 function updateEn(data){
-	var dataString = JSON.stringify(data);;
+	var dataString = JSON.stringify(data);
 	var jsonUpdated1 =  dataString.replace(oldEnglishSlide, newEnglishSlide);
 	var jsonUpdated2 =  jsonUpdated1.replace(oldEnglishMiniature, newEnglishMiniature);
 	var obj = JSON.parse(jsonUpdated2);
@@ -57,7 +55,7 @@ function updateEn(data){
 }
 
 function updateFR(data){
-	var dataString = JSON.stringify(data);;
+	var dataString = JSON.stringify(data);
 	var jsonUpdated1 =  dataString.replace(oldFrenchSlide, newFrenchSlide);
 	var jsonUpdated2 =  jsonUpdated1.replace(oldFrenchMiniature, newFrenchMiniature );
 	var obj = JSON.parse(jsonUpdated2);

@@ -10,7 +10,7 @@ function vimeoToJwp(platform) {
 	if (platformWhitelist.indexOf(platform) < 0) {
 		console.log("The platform must be one of " + platformWhitelist.join(","));
 		return;
-	};
+	}
 
 	var thematiquesDir = platform + '/thematiques';
 
@@ -29,7 +29,7 @@ function vimeoToJwp(platform) {
 	if (thematiquesList.length == 0) {
     	console.log("Please enter a valid discipline ref. For example: 01");
     	return;
-	};
+	}
 
 	thematiquesList.forEach(function(thematiqueDirName) {
 				//console.log(thematiquesDir + '/' + thematiqueDirName+'/test/');
@@ -45,7 +45,7 @@ function vimeoToJwp(platform) {
 	});
 
 	console.log('\n DONE UPDATING LESSONS');
-};
+}
 
 
 function updateSlide(slidePath){
@@ -94,4 +94,4 @@ function updateSlide(slidePath){
 	process.stdout.write('.');
 	jf.writeFileSync(slidePath, slide);
 
-};
+}
