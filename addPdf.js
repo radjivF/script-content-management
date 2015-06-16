@@ -1,7 +1,6 @@
 var fs = require('fs');
 var platformWhitelist = ['schneider', 'chanel'];
 var jf = require('jsonfile');
-var regexp = require('node-regexp');
 var S = require('string');
 
 
@@ -22,10 +21,10 @@ function addPdfs(platform, disciplineRef) {
 
 	var thematiquesList = fs.readdirSync(thematiquesDir)
 							.filter(function(dirName) {
-								return (dirName.indexOf('.json') < 0) && (dirName.match(/^\./) == null) && (dirName.indexOf(disciplineRef) >= 0) && fs.lstatSync(thematiquesDir + '/' + dirName).isDirectory();
+								return (dirName.indexOf('.json') < 0) && (dirName.match(/^\./) === null) && (dirName.indexOf(disciplineRef) >= 0) && fs.lstatSync(thematiquesDir + '/' + dirName).isDirectory();
 							});
 
-	if (thematiquesList.length == 0) {
+	if (thematiquesList.length === 0) {
     	console.log("Please enter a valid discipline ref. For example: 01");
     	return;
 	}
@@ -69,7 +68,7 @@ function updateSlide(slidePath){
 	else{
 
 		var chapterNumber = S(slide.question.header).between('chapter', '.slide_').s; 
-		var description = slide.question.header.replace('header', 'lesson.pdf.description');
+		description = slide.question.header.replace('header', 'lesson.pdf.description');
 		//deleted slide key 
 		var  descriptionSlide = S(description).between('chapter', '.lesson.pdf.description').s; 
 		var descriptionForlesson =  description.replace(descriptionSlide, chapterNumber);
@@ -89,4 +88,4 @@ function updateSlide(slidePath){
 		process.stdout.write('.');
 		jf.writeFileSync(slidePath, slide);
 	}	
-};
+}

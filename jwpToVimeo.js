@@ -21,10 +21,10 @@ function jwpToVimeo(platform) {
 
 	var thematiquesList = fs.readdirSync(thematiquesDir)
 							.filter(function(dirName) {
-								return (dirName.indexOf('.json') < 0) && (dirName.match(/^\./) == null) && fs.lstatSync(thematiquesDir + '/' + dirName).isDirectory();
+								return (dirName.indexOf('.json') < 0) && (dirName.match(/^\./) === null) && fs.lstatSync(thematiquesDir + '/' + dirName).isDirectory();
 							});
 
-	if (thematiquesList.length == 0) {
+	if (thematiquesList.length === 0) {
     	console.log("Please enter a valid discipline ref. For example: 01");
     	return;
 	}
