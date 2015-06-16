@@ -1,45 +1,43 @@
-var xlsxj = require("xlsx-to-json");
-var fs = require("fs");
-var _ = require("lodash");
-var jsonFile = require('jsonfile');
+var fs = require('fs');
+var platformWhitelist = ['digital-core'];
+var jf = require('jsonfile');
+var regexp = require('node-regexp');
 var S = require('string');
-var XLSX = require('xlsx-extract').XLSX;
-var myFile = './ressources/vimeoid.xlsx';
-var dirFolder = '../content/disciplines/'; 
+var xlsxj = require('xlsx-to-json');
+var replace = require('replace');
 
-function convertXlsxToJson(file) {
-  xlsxj({
-    input: file, 
-    output: "./ressources/output.json"
-  }, function(err, result) {
-    if(err) {
-      console.error(err);
-    }else {
-      console.log(result);
-	   replace(result);
-    }
-  });
+var disciplineDir= '../disciplines/';
+var excelFile = 'vimeoid.xlsx';
+var jsonData = 'output.json';
+
+parseExcel();
+updateIdVimeo();
+
+function parseExcel(){
+	  xlsxj({
+	    input: excelFile, 
+	    output: jsonData
+	  }, function(err, result) {
+	    if(err) {
+	      console.error(err);
+	    }else {
+	    	return result;
+	    }
+	  });
 }
 
-function getFileInFolder(dirFolder){
-  var fileList = fs.readdirSync(dirFolder);
-  console.log('list of files in the folder: '+ fileList)
-  console.log('we found '+ fileList.length +' files')
-  return fileList;
+function updateIdVimeo(){
+	var data = JSON.parse(fs.readFileSync(jsonData))
+	for(ligne in data){
+		console.log("old "+data[ligne].oldId +"   new "+data[ligne].newId);
+		replace({
+	  		regex: data[ligne].oldId,
+	  		replacement: data[ligne].newId,
+	  		paths: [disciplineDir],
+	  		recursive: true,
+	  		silent: true,
+		});
+	}
 }
 
-function replace(result){
 
-  var fileList = getFileInFolder(dirFolder);
-  _(result).forEach(function(n) {
-    _(fileList).forEach(function(file){
-      var json = JSON.parse(fs.readFileSync(dirFolder+ file));
-      S(json).replaceAll(result.oldId, result.newId).s;
-      jsonFile.writeFileSync(dirFolder+file, json);
-      console.log('Update of ' + file + ' =====>  done'); 
-    }); 
-
-  }).value();	
-}
-
-convertXlsxToJson(myFile);

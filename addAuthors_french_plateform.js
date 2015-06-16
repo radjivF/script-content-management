@@ -36,35 +36,56 @@ function addAuthors(platform) {
 	for(thematique in thematiquesList){
 		var folder =thematiquesList[thematique];
 		console.log(folder)
-		parseExcel(folder);
+		updateSlide(thematique)
 	}
 	
 };
 
-function parseExcel(folder){
+// function parseExcel(folder){
 
-	parseXlsx(excelFile, function(err, data) {
-  		if(err) throw err;
-		var jsonAuthor = data;
-		var size = Object.keys(jsonAuthor).length;
-		for(var key in jsonAuthor){
-			var line = jsonAuthor[key];
+// 	parseXlsx(excelFile, function(err, data) {
+//   		if(err) throw err;
+// 		var jsonAuthor = data;
+// 		var size = Object.keys(jsonAuthor).length;
+// 		for(var key in jsonAuthor){
+// 			var line = jsonAuthor[key];
 
-			var slides = fs.readdirSync('/thematiques' + '/' + folder+ '/' )
-						   .filter(function(slideName){
-							   return (slideName.indexOf('.json') > 0);
-						   });
-			slides.forEach(function(slideName) {
-				var slidePath = thematiquesDir + '/' + thematiqueDirName + '/' + slideName;
-				updateSlide(slidePath,line);						
-			});			
-      	}
-		console.log('\n DONE UPDATING LESSONS');
-	});
-}
+// 			var slides = fs.readdirSync('/thematiques' + '/' + folder+ '/' )
+// 						   .filter(function(slideName){
+// 							   return (slideName.indexOf('.json') > 0);
+// 						   });
+// 			slides.forEach(function(slideName) {
+// 				var slidePath = thematiquesDir + '/' + thematiqueDirName + '/' + slideName;
+// 				updateSlide(slidePath,line);						
+// 			});			
+//       	}
+// 		console.log('\n DONE UPDATING LESSONS');
+// 	});
+// }
 
-function updateSlide(slidePath,line){
-	var authors=[];
+// function updateSlidefromExcel(slidePath,line){
+// 	var authors=[];
+// 	var slide = JSON.parse(fs.readFileSync(slidePath));
+// 	if(line[0]==slide.chapter){
+// 		if(slide.authors){
+// 			authors.push(line[1]);
+// 			jf.writeFileSync(slidePath, slide);
+// 		}	
+// 		else{			
+// 			slide.authors = [line[1]];
+// 			jf.writeFileSync(slidePath, slide);
+// 		}
+// 	}
+// };
+
+function updateSlide(thematique,line){
+	var authors=[
+    	"team@coorpacademy"
+	];
+
+	slides.forEach(function(slideName) {
+ 		var slidePath = thematiquesDir + '/' + thematiqueDirName + '/' + slideName;						
+ 	});
 	var slide = JSON.parse(fs.readFileSync(slidePath));
 	if(line[0]==slide.chapter){
 		if(slide.authors){
@@ -76,8 +97,4 @@ function updateSlide(slidePath,line){
 			jf.writeFileSync(slidePath, slide);
 		}
 	}
-
-	
-
 };
-
