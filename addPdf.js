@@ -69,6 +69,7 @@ function updateSlide(slidePath){
 
 		var chapterNumber = S(slide.question.header).between('chapter', '.slide_').s; 
 		description = slide.question.header.replace('header', 'lesson.pdf.description');
+		
 		//deleted slide key 
 		var  descriptionSlide = S(description).between('chapter', '.lesson.pdf.description').s; 
 		var descriptionForlesson =  description.replace(descriptionSlide, chapterNumber);
