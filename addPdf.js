@@ -4,50 +4,19 @@ var jf = require('jsonfile');
 var S = require('string');
 
 
-addPdfs(process.argv[2], process.argv[3]);
+var folderSlides = '/slides';
 
-function addPdfs(platform, disciplineRef) {
-	if (platformWhitelist.indexOf(platform) < 0) {
-		console.log("The platform must be one of " + platformWhitelist.join(","));
-		return;
+function addPdfs(folder) {
+	slides = fs.readdirSync(folder).filter(junk.not);
+	for(var i in slides){
+		updateSlide('folderSlides'+slides[i]+'/');
 	}
 
-	var thematiquesDir = platform + '/thematiques';
-
-	if (!fs.existsSync(thematiquesDir)) {
-    	console.log("Please enter a valid platform directory. For example: digital");
-    	return;
-	}
-
-	var thematiquesList = fs.readdirSync(thematiquesDir)
-							.filter(function(dirName) {
-								return (dirName.indexOf('.json') < 0) && (dirName.match(/^\./) === null) && (dirName.indexOf(disciplineRef) >= 0) && fs.lstatSync(thematiquesDir + '/' + dirName).isDirectory();
-							});
-
-	if (thematiquesList.length === 0) {
-    	console.log("Please enter a valid discipline ref. For example: 01");
-    	return;
-	}
-	thematiquesList.forEach(function(thematiqueDirName) {
-		var slides = fs.readdirSync(thematiquesDir + '/' + thematiqueDirName)
-					   .filter(function(slideName){
-						   return (slideName.indexOf('.json') > 0);
-					   });
-		console.log("updating slides in " + thematiqueDirName);
-		slides.forEach(function(slideName) {
-			var slidePath = thematiquesDir + '/' + thematiqueDirName + '/' + slideName;
-			updateSlide(slidePath);
-		});
-	});
-
-	console.log('\n DONE UPDATING LESSONS');
 }
 
 
 function updateSlide(slidePath){
 	var slide = JSON.parse(fs.readFileSync(slidePath));
-
-
 	if(slide.lessons){
 		var description = slide.lessons[0].poster;
 		// the description is the videos poster not the description of the videos
